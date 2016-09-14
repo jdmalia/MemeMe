@@ -123,7 +123,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             imageView.image = image
             shareButton.enabled = true
         }
-        dismissViewControllerAnimated(true, completion: nil)    }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -152,8 +153,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             self.initializeMemeEditor(self)
         }
         self.presentViewController(activityController, animated: true, completion: nil)
-        
-        
     }
     
     // MODEL: Generate and save the meme
