@@ -15,6 +15,9 @@ struct Meme {
     let memedImage: UIImage
 }
 
+// Enum that associates image button tags with approriate image picker
+enum ImageButton: Int {case Camera=0, Album=1}
+
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var shareButton: UIBarButtonItem!
@@ -101,18 +104,23 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.textAlignment = .Center
     }
     
-    @IBAction func pickImageFromCamera(sender: AnyObject) {
+    func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType) {
+        // configure and present image picker
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePicker.sourceType = sourceType
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    @IBAction func pickImageFromAlbum(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+    @IBAction func pickImage(sender: UIBarButtonItem) {
+        if let buttonPressed = ImageButton(rawValue: sender.tag) {
+            switch (buttonPressed) {
+            case .Camera:
+                presentImagePickerWith(UIImagePickerControllerSourceType.Camera)
+            case .Album:
+                presentImagePickerWith(UIImagePickerControllerSourceType.PhotoLibrary)
+            }
+        }
     }
     
     // UIImagePickerControllerDelegate
