@@ -157,8 +157,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             }
             // i.e. Only save it if we share it...
             self.save()
-            // ...And reset the editor
-            self.initializeMemeEditor(self)
+            self.dismiss(animated: true, completion: nil)
         }
         self.present(activityController, animated: true, completion: nil)
     }
@@ -194,7 +193,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                         image: imageView.image!,
                         memedImage: generateMemedImage())
         
-        storedMemes.append(meme)
+        // Add it to the memes array on the Application Delegate
+        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
     }
 }
 
