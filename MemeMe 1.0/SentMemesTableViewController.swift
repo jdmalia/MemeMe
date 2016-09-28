@@ -10,11 +10,12 @@ import UIKit
 
 class SentMemesTableViewController: UITableViewController {
     
-    var memes: [Meme]!
+    var memes: [Meme] {
+        return (UIApplication.shared.delegate as! AppDelegate).memes
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.memes = (UIApplication.shared.delegate as! AppDelegate).memes
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,9 +33,9 @@ class SentMemesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let memeDetailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-        memeDetailController.meme = self.memes[indexPath.row]
-        self.navigationController!.pushViewController(memeDetailController, animated: true)
+        let memeDetailController = storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        memeDetailController.meme = memes[indexPath.row]
+        navigationController!.pushViewController(memeDetailController, animated: true)
     }
 
 }

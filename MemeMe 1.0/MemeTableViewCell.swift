@@ -28,7 +28,7 @@ class MemeTableViewCell: UITableViewCell {
         if let textLabel = self.textLabel {
             let x = imageMaxX + textSpacing
             let y = textLabel.frame.minY
-            let w = self.frame.maxX - textSpacing - x
+            let w = frame.maxX - textSpacing - x
             let h = textLabel.frame.height
             textLabel.frame = CGRect(x: x, y: y, width: w, height: h)
         }

@@ -28,7 +28,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
-    var storedMemes: [Meme]!
     
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.black,
@@ -47,8 +46,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         initializeMemeTextField(bottomTextField)
         
         initializeMemeEditor(self)
-        
-        storedMemes = []
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,6 +104,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func presentImagePickerWith(_ sourceType: UIImagePickerControllerSourceType) {
         // configure and present image picker
         let imagePicker = UIImagePickerController()
+        imagePicker.modalPresentationStyle = UIModalPresentationStyle.popover
         imagePicker.delegate = self
         imagePicker.sourceType = sourceType
         present(imagePicker, animated: true, completion: nil)
@@ -183,8 +181,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func showScreenComponents(_ isVisible: Bool) {
-        self.toolBar.isHidden = !isVisible
-        self.navBar.isHidden = !isVisible
+        toolBar.isHidden = !isVisible
+        navBar.isHidden = !isVisible
     }
     
     func save() {
@@ -195,6 +193,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         // Add it to the memes array on the Application Delegate
         (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
+    }
+    
+    @IBAction func cancel() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

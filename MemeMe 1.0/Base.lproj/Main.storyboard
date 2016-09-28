@@ -244,7 +244,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="rO8-5v-Io2">
                                             <connections>
-                                                <action selector="initializeMemeEditor:" destination="BYZ-38-t0r" id="CRA-Zg-nKH"/>
+                                                <action selector="cancel" destination="BYZ-38-t0r" id="zYu-I5-pFV"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
