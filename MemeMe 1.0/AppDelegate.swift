@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  MemeMe 1.0
+//  MemeMe
 //
 //  Created by Jason Malia on 9/10/16.
 //  Copyright © 2016 Jason Malia. All rights reserved.

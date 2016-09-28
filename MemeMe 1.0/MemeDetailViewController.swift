@@ -17,9 +17,6 @@ class MemeDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        memeImage.center.x = view.frame.midX
-        memeImage.center.y = view.frame.midY
-        
         memeImage.image = meme.memedImage
     }
 

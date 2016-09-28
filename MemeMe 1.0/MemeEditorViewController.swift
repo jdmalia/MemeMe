@@ -1,19 +1,12 @@
 //
-//  ViewController.swift
-//  MemeMe 1.0
+//  MemeEditorViewController.swift
+//  MemeMe
 //
 //  Created by Jason Malia on 9/10/16.
 //  Copyright © 2016 Jason Malia. All rights reserved.
 //
 
 import UIKit
-
-struct Meme {
-    let topText: String
-    let bottomText: String
-    let image: UIImage
-    let memedImage: UIImage
-}
 
 // Enum that associates image button tags with approriate image picker
 enum ImageButton: Int {case camera=0, album=1}
@@ -73,7 +66,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func keyboardWillShow(_ notification: Notification) {
         if bottomTextField.isEditing {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
         }
     }
     
@@ -138,7 +131,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // UITextFieldDelegate
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
